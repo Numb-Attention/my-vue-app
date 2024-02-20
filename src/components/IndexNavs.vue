@@ -1,7 +1,7 @@
 <template>
     <el-row :gutter="20" class="mt-5">
         <el-col :span="3" :offset="0" v-for="(item,index) in iconNavs" :key="index">
-            <el-card shadow="hover" @click="$router.push(item.path)" >
+            <el-card shadow="hover" @click="$router.push(item.path)">
                 <div class="flex  flex-col items-center justify-center cursor-pointer">
                     <el-icon :size="16" class="item.color">
                         <component :is="item.icon"></component>
@@ -10,13 +10,12 @@
                 </div>
             </el-card>
         </el-col>
-        
+
     </el-row>
-    
 </template>
 <script setup >
     const iconNavs=[
-        {
+        {   
             icon:"user",
             color:"text-light-blue-500",
             title:"用户",

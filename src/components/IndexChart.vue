@@ -1,19 +1,18 @@
 <template>
-    <el-card shadow="never" >
+    <el-card shadow="never">
         <template #header>
-        <div class="flex justify-between" >
-            <span class="text-sm">订单统计</span>
-            <div>
-                <el-check-tag v-for="(item,index) in options" :key="index" 
-                :checked="current == item.value" @click="handleChoose(item.value)" style="margin-right: 8px">
-                    {{ item.text }}
-                </el-check-tag>
+            <div class="flex justify-between">
+                <span class="text-sm">订单统计</span>
+                <div>
+                    <el-check-tag v-for="(item,index) in options" :key="index" :checked="current == item.value"
+                        @click="handleChoose(item.value)" style="margin-right: 8px">
+                        {{ item.text }}
+                    </el-check-tag>
+                </div>
             </div>
-        </div>
         </template>
         <div ref="el" id="chart" style="width:100%;height:300px"></div>
     </el-card>
-    
 </template>
 <script setup>
     import {ref , onMounted ,onBeforeUnmount} from "vue";

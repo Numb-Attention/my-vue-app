@@ -1,17 +1,13 @@
 <template>
-     <el-drawer v-model="showDrawer" 
-     :title="title" 
-     :size="size" 
-     :close-on-click-modal="false"
-     :destroyOnClose="destroyOnClose"
-      >
+    <el-drawer v-model="showDrawer" :title="title" :size="size" :close-on-click-modal="false"
+        :destroyOnClose="destroyOnClose">
         <div class="formDrawer">
             <div class="body">
                 <slot></slot>
             </div>
             <div class="actions">
-                <el-button   type="primary" @click="submit" :loading="loading"  >{{confirmText}}</el-button>
-                <el-button   type="primary" @click="close"  >取消</el-button>
+                <el-button type="primary" @click="submit" :loading="loading">{{confirmText}}</el-button>
+                <el-button type="primary" @click="close">取消</el-button>
             </div>
         </div>
     </el-drawer>
@@ -40,7 +36,7 @@
     const hideLoading =()=>loading.value = false
     //打开抽屉
     const open = ()=>  showDrawer.value = true
-    // //关闭抽屉
+    // 关闭抽屉
     const close = ()=>  showDrawer.value = false
 
     //提交
@@ -55,23 +51,25 @@
     })
 </script>
 <style>
-    .formDrawer{
-        width: 100%;
-        height: 100%;
-        position: relative;
-        @apply  flex flex-col
-    }
-    .formDrawer .body{
-        flex: 1;
-        position: absolute;
-        overflow-y:auto;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 50px;
-    }
-    .formDrawer .actions{
-        height: 50px;
-        @apply mt-auto flex items-center;
-    }
+.formDrawer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    @apply flex flex-col
+}
+
+.formDrawer .body {
+    flex: 1;
+    position: absolute;
+    overflow-y: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+}
+
+.formDrawer .actions {
+    height: 50px;
+    @apply mt-auto flex items-center;
+}
 </style>

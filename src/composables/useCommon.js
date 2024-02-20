@@ -55,9 +55,9 @@ export function useInitTable(opt = {}) {
             toast("删除成功")
             getData()
         })
-            .finally(() => {
-                loading.value = false
-            })
+        .finally(() => {
+            loading.value = false
+        })
     }
 
     //修改状态
@@ -72,6 +72,30 @@ export function useInitTable(opt = {}) {
                 row.statusLoading = false
             })
     }
+    const multipleTableRef = ref(null)
+    //多选中ID
+    const multiSelectionIds = ref([])
+    const handleSelectionChange = (e) => {
+        console.log(e.map(o => o.id));
+        multiSelectionIds.value = e.map(o => o.id)
+    }
+
+    //批量删除
+    const handleMultiDelete = () => {
+        loading.value = true
+        opt.delete(multiSelectionIds.value).then(res => {
+            toast('删除成功')
+            if (multipleTableRef.value) {
+                multipleTableRef.value.clearSelection()
+            }
+            getData()
+        }).finally(() => {
+            loading.value = false
+        })
+
+    }
+
+
     return {
         searchForm,
         resetSearchForm,
@@ -83,6 +107,9 @@ export function useInitTable(opt = {}) {
         getData,
         handleDelet,
         handleStatusChange,
+        handleSelectionChange,
+        multipleTableRef,
+        handleMultiDelete
     }
 }
 //新增,修改
@@ -101,8 +128,16 @@ export function useInitForm(opt = {}) {
         formRef.value.validate((valid) => {
             if (!valid) return
             formDrawerRef.value.showLoading()
+            
+            let body = {}
+            if(opt.beforeSubmit && typeof opt.beforeSubmit == "function"){
+                body = opt.beforeSubmit({...form})
+            } else {
+               body = form 
+            }
+            console.log(body)
 
-            const fun = editId.value ? opt.update(editId.value, form) : opt.create(form)
+            const fun = editId.value ? opt.update(editId.value, body) : opt.create(body)
             fun.then(res => {
                 toast(drawerTitle.value + "新增成功")
                 //修改刷新当前页,新增刷新第一页

@@ -6,30 +6,35 @@
 </template>
 
 <style >
-  body{
-    @apply bg-gray-100
-  }
-  #nprogress .bar{
-    background-color: #f4f4f4!important;
-    height: 3px;
-  }
-  ::-webkit-scrollbar{
-    width: 4px;
-    height: 6px;
+body {
+  @apply bg-gray-100
+}
 
-  }
-  ::-webkit-scrollbar-corner{
-    display: block;
+#nprogress .bar {
+  background-color: #f4f4f4 !important;
+  height: 3px;
+}
 
-  }
-  ::-webkit-scrollbar-thumb{
-    border-radius: 9px;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  ::-webkit-scrollbar-thumb,
-  ::-webkit-scrollbar-track{
-    border-right-color: transparent;
-    border-left-color: transparent;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-</style>
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar-corner {
+  display: block;
+
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+  border-right-color: transparent;
+  border-left-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+}</style>

@@ -1,30 +1,25 @@
 <template>
     <el-aside width="220px" class="image-aside" v-loading="loading">
         <div class="top">
-            <AsideList :active="activeId == item.id" v-for="(item,index) in list" :key="index"
-            @edit="handleEdit(item)"
-            @delete="handleDelete(item.id)"
-            @click="handleChangeActiveID(item.id)">
+            <AsideList :active="activeId == item.id" v-for="(item,index) in list" :key="index" @edit="handleEdit(item)"
+                @delete="handleDelete(item.id)" @click="handleChangeActiveID(item.id)">
                 {{ item.name }}
             </AsideList>
         </div>
         <div class="bottom">
-            <el-pagination background layout="prev, next" :total="total" 
-            :current-page="currentPage" 
-            :page-size="limit"
-            @current-change="getData"
-            />
+            <el-pagination background layout="prev, next" :total="total" :current-page="currentPage" :page-size="limit"
+                @current-change="getData" />
         </div>
     </el-aside>
     <FormDrawer :title="drawerTitle" ref="formDrawerRef" @submit="handleSubmit">
-        <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false" >
+        <el-form :model="form" ref="formRef" :rules="rules" label-width="80px" :inline="false">
             <el-form-item label="分类名称" prop="name">
                 <el-input v-model="form.name"></el-input>
             </el-form-item>
             <el-form-item label="排序" prop="order">
                 <el-input v-model="form.order"></el-input>
             </el-form-item>
-        </el-form> 
+        </el-form>
     </FormDrawer>
 </template>
 <script setup>
@@ -65,6 +60,7 @@
     getData()
     const editId = ref(0)
     const drawerTitle = computed(()=>editId.value ? "修改" : "新增")
+    //计算属性动态赋值标题
     const formDrawerRef = ref(null)
     
     const form = reactive({
@@ -124,6 +120,7 @@
     //选中图库分类ID
     const activeId = ref(0)
     const emit = defineEmits(["change"])
+    //切换分类
     function handleChangeActiveID(id){
         activeId.value = id
         emit("change",id)
@@ -135,26 +132,27 @@
 </script>
 
 <style>
-    .image-aside{
-        border-bottom: 1px solid #eeeeee;
-        position: relative;
-    }
-    .image-aside .top{
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 50px;
-        overflow-y: auto;
-    }
-    .image-aside .bottom{
-        position: absolute;
-        bottom: 0;
-        height: 50px;
-        left: 0;
-        right: 0;
-        @apply flex items-center justify-center;
+.image-aside {
+    border-bottom: 1px solid #eeeeee;
+    position: relative;
+}
 
-    }
-    
+.image-aside .top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 50px;
+    overflow-y: auto;
+}
+
+.image-aside .bottom {
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    left: 0;
+    right: 0;
+    @apply flex items-center justify-center;
+
+}
 </style>

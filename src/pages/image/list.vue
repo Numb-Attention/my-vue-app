@@ -1,16 +1,14 @@
 <template>
-    <el-container class="bg-white rounded " :style="{ height:(h + 'px')}">
-      <el-header class="image-header">
-        <el-button type="primary" size="small" @click="handleOpenCreate">新增图片分类</el-button>
-        <el-button type="warning" size="default" @click="handleOpenUpload">上传图片</el-button>
-        
-      </el-header>
-      
-      <el-container>
-        <ImageAside ref="ImageAsideRef" @change="handleAsideChange"/>
-        <ImageMain ref="ImageMainRef"/>
-      </el-container>
+  <el-container class="bg-white rounded " :style="{ height:(h + 'px')}">
+    <el-header class="image-header">
+      <el-button type="primary" size="small" @click="handleOpenCreate">新增图片分类</el-button>
+      <el-button type="warning" size="default" @click="handleOpenUpload">上传图片</el-button>
+    </el-header>
+    <el-container>
+      <ImageAside ref="ImageAsideRef" @change="handleAsideChange" />
+      <ImageMain ref="ImageMainRef" />
     </el-container>
+  </el-container>
 </template>
 
 <script setup>
@@ -31,9 +29,8 @@
 </script>
 
 <style>
-    .image-header{
-      border-bottom: 1px solid #eeeeee;
-      @apply flex items-center
-    }
-
+.image-header {
+  border-bottom: 1px solid #eeeeee;
+  @apply flex items-center
+}
 </style>
