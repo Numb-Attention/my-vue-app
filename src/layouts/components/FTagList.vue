@@ -1,6 +1,6 @@
 <template>
     <div class="f-tag-list" :style="{ left: $store.state.asideWidth }">
-        <el-tabs v-model="activeTab" type="card" class="flex-1" @tab-change="changeTab" @tab-remove="removeTab"
+        <el-tabs id="pane" v-model="activeTab" type="card" class="flex-1" @tab-change="changeTab" @tab-remove="removeTab"
             style="min-width:100px;">
             <el-tab-pane :closable="item.path != '/'" v-for="item in tabList" :key="item.path" :label="item.title"
                 :name="item.path">
@@ -39,7 +39,7 @@ const {
 } = useTabList()
 </script>
 
-<style>
+<style >
 .f-tag-list {
     @apply fixed bg-gray-100 flex items-center px-2;
     top: 64px;
@@ -62,7 +62,7 @@ const {
     border: 0 !important
 }
 
-.el-tabs__item {
+#pane .el-tabs__item {
     border: 0 !important;
     height: 32px;
     line-height: 32px;

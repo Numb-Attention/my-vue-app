@@ -1,8 +1,9 @@
 import  axios  from "~/axios";
+import { queryParams } from "../composables/util";
 // 引入自己创建的axios的实例
 
-export function login(username,password){
-    return axios.post("/admin/login",{
+export function login(username, password) {
+    return axios.post("/admin/login", {
         username,
         password,
     })
@@ -21,15 +22,7 @@ export function updatapassword(data){
 }
 
 export function getManagerList(page,query = {}){
-    let q = []
-    for (const key in query) {
-        if(query[key]){
-            q.push(`${key}=${encodeURIComponent(query[key])}`)
-        }
-    }
-    let r = q.join("&")
-    r = r ? ("?"+r) : ""
-    //拼接为 limit=10&keyword=ceshi
+    let r = queryParams(query)
     return axios.get(`admin/manager/${page}${r}`)
 }
 

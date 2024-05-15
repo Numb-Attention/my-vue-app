@@ -1,7 +1,12 @@
 <template>
   <el-card shadow="never" class="border-0">
     <!-- 搜索 -->
-    <el-form :model="searchForm" label-width="80px" class="mb-3">
+    <Search :model="searchForm" @search="getData" @reset="resetSearchForm">
+      <SearchItem label="关键词">
+        <el-input v-model="searchForm.keyword" placeholder="管理员昵称" clearable></el-input>
+      </SearchItem>
+    </Search>
+    <!-- <el-form :model="searchForm" label-width="80px" class="mb-3">
       <el-row :gutter="20">
         <el-col :span="8" :offset="0">
           <el-form-item label="关键词">
@@ -15,7 +20,7 @@
           </div>
         </el-col>
       </el-row>
-    </el-form>
+    </el-form> -->
 
     <!-- 新增刷新 服用组件 -->
     <ListHeader @create="handleCreate" @refresh="getData" />
@@ -100,7 +105,8 @@ import FormDrawer from "~/components/FormDrawer.vue"
 import ChooseImage from "~/components/ChooseImage.vue"
 import ListHeader from "~/components/ListHeader.vue"
 import { useInitTable, useInitForm } from '~/composables/useCommon.js'
-
+import Search from '~/components/Search.vue';
+import SearchItem from '~/components/SearchItem.vue';
 const roles = ref([])
 
 const {
