@@ -19,11 +19,23 @@ export function createGoods(data) {
 }
 
 export function updateGoods(id, data) {
-	return axios.post(`/admin/goods/${id}`, { data });
+	return axios.post(`/admin/goods/${id}`, data);
 }
 
 export function deleteGoods(ids) {
 	return axios.post(`/admin/goods/delete_all`, {
 		ids,
 	});
+}
+
+export function readGoods(id) {
+	return axios.get(`/admin/goods/read/${id}`);
+}
+
+export function setGoodsBanner(id, data) {
+	return axios.post(`/admin/goods/banners/${id}`, data);
+}
+
+export function updateGoodsSkus(id, data) {
+	return axios.post(`/admin/goods/updateskus/${id}`, data);
 }

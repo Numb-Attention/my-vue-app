@@ -29,7 +29,7 @@
 			</el-table-column>
 		</el-table>
 		<div class="flex items-center justify-center mt-5">
-			<el-pagination background layout="prev,pager, next" :total="total" :current-page="currentPage"
+			<el-pagination background layout="prev,pager,next" :total="total" :current-page="currentPage"
 				:page-size="limit" @current-change="getData" />
 		</div>
 
