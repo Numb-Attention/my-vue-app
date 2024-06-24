@@ -87,7 +87,6 @@
             <el-option v-for="item in roles" :key="item.id" :label="item.name" :value="item.id">
             </el-option>
           </el-select>
-
         </el-form-item>
         <el-form-item label="状态" prop="status">
           <el-switch v-model="form.status" :active-value="1" :inactive-value="0">

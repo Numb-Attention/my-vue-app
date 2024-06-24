@@ -145,7 +145,7 @@ const addChild = (id) => {
     display: flex;
     flex: 1;
     align-items: center;
-    font-size: 10px;
+    font-size: 14px;
     padding-right: 8px;
 }
 

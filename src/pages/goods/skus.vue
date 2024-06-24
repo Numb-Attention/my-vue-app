@@ -1,5 +1,5 @@
 <template>
-    <FormDrawer ref="formDrawerRef" title="设置商品详情" @submit="submit" size="70%" destory-on-close>
+    <FormDrawer ref="formDrawerRef" title="设置商品规格" @submit="submit" size="70%" destory-on-close>
         <el-form :model="form">
             <el-form-item label="规格类型">
                 <el-radio-group v-model="form.sku_type" @change="">
@@ -38,6 +38,7 @@
             </template>
             <template v-else>
                 <skuCard />
+                <skuTable />
             </template>
         </el-form>
     </FormDrawer>
@@ -48,8 +49,11 @@ import { ref, reactive } from 'vue';
 import { readGoods, setGoodsBanner, updateGoods, updateGoodsSkus } from '~/api/goods.js'
 import FormDrawer from '~/components/FormDrawer.vue'
 import { toast } from "~/composables/util.js"
-import { goodsId, initSkuCardList } from '~/composables/useSku.js'
+import { goodsId, initSkuCardList, sku_list } from '~/composables/useSku.js'
 import skuCard from './components/skuCard.vue';
+import skuTable from './components/skuTable.vue';
+
+
 const formDrawerRef = ref(null)
 const form = reactive({
     sku_type: 0,
@@ -64,7 +68,14 @@ const form = reactive({
 const emit = defineEmits(['reloadData'])
 const submit = () => {
     formDrawerRef.value.showLoading()
-    updateGoodsSkus(goodsId.value, form).then((res) => {
+    let data = {
+        sku_type: form.sku_type,
+        sku_value: form.sku_value
+    }
+    if (form.sku_type == 1) {
+        data.goodsSkus = sku_list.value
+    }
+    updateGoodsSkus(goodsId.value, data).then((res) => {
         toast('设置商品规格成功')
         formDrawerRef.value.close()
         emit('reloadData')

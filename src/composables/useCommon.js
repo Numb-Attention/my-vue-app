@@ -133,6 +133,7 @@ export function useInitTable(opt = {}) {
 		multipleTableRef,
 		handleMultiDelete,
 		handleMultiStatusChange,
+		multiSelectionIds,
 	};
 }
 //新增,修改
