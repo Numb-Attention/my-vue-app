@@ -31,7 +31,6 @@
                             </el-button>
                         </template>
                     </el-popconfirm>
-
                 </div>
             </template>
             <skuCardItem :skuCardId="item.id" />
